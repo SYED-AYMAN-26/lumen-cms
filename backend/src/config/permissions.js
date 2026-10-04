@@ -1,0 +1,77 @@
+export const PERMISSIONS = [
+  { key: 'view_dashboard', group: 'General', description: 'View the admin dashboard and its statistics.' },
+  { key: 'view_content', group: 'Content', description: 'View content, pages, and related lists in the CMS.' },
+  { key: 'create_content', group: 'Content', description: 'Create new posts, articles, news, and announcements.' },
+  { key: 'edit_content', group: 'Content', description: 'Edit any content item, regardless of author.' },
+  { key: 'edit_own_content', group: 'Content', description: 'Edit content created by the signed-in user.' },
+  { key: 'delete_content', group: 'Content', description: 'Move content to trash, restore it, or delete it permanently.' },
+  { key: 'publish_content', group: 'Workflow', description: 'Publish, unpublish, schedule, and archive content.' },
+  { key: 'review_content', group: 'Workflow', description: 'Approve or reject content submitted for review.' },
+  { key: 'manage_posts', group: 'Content', description: 'Full management of posts, including edit, publish, and delete.' },
+  { key: 'manage_pages', group: 'Pages', description: 'Create, edit, publish, and delete pages.' },
+  { key: 'manage_media', group: 'Media', description: 'View and manage the media library, including deletion.' },
+  { key: 'upload_media', group: 'Media', description: 'Upload images and videos.' },
+  { key: 'delete_media', group: 'Media', description: 'Delete files from the media library.' },
+  { key: 'manage_categories', group: 'Taxonomy', description: 'Create, edit, and delete categories.' },
+  { key: 'manage_tags', group: 'Taxonomy', description: 'Create, edit, and delete tags.' },
+  { key: 'manage_users', group: 'People', description: 'Create, edit, deactivate, and reset users.' },
+  { key: 'manage_roles', group: 'People', description: 'Create roles and assign permissions.' },
+  { key: 'manage_settings', group: 'System', description: 'Change site settings and read contact messages.' },
+  { key: 'view_activity_logs', group: 'System', description: 'View the activity log.' },
+];
+
+export const PERMISSION_KEYS = PERMISSIONS.map((p) => p.key);
+
+export const ROLE_PRESETS = [
+  {
+    name: 'Super Admin',
+    slug: 'super-admin',
+    description: 'Unrestricted access. This role cannot be deleted or reduced.',
+    permissions: PERMISSION_KEYS,
+  },
+  {
+    name: 'Admin',
+    slug: 'admin',
+    description: 'Manages content, media, users, categories, roles, and settings.',
+    permissions: PERMISSION_KEYS,
+  },
+  {
+    name: 'Editor',
+    slug: 'editor',
+    description: 'Creates, edits, reviews, and publishes content. Manages categories and media.',
+    permissions: [
+      'view_dashboard',
+      'view_content',
+      'create_content',
+      'edit_content',
+      'delete_content',
+      'publish_content',
+      'review_content',
+      'manage_posts',
+      'manage_pages',
+      'manage_categories',
+      'manage_tags',
+      'upload_media',
+      'manage_media',
+      'delete_media',
+    ],
+  },
+  {
+    name: 'Author',
+    slug: 'author',
+    description: 'Creates drafts and edits their own content. Can submit work for review.',
+    permissions: [
+      'view_dashboard',
+      'view_content',
+      'create_content',
+      'edit_own_content',
+      'upload_media',
+    ],
+  },
+  {
+    name: 'Viewer',
+    slug: 'viewer',
+    description: 'Read-only access to the dashboard and content.',
+    permissions: ['view_dashboard', 'view_content'],
+  },
+];
